@@ -11,6 +11,7 @@
 #include <vector>
 #include "building.h"
 #include "tinyxml2.h"
+#include <iostream>
 using namespace std;
 using namespace tinyxml2;
 //
@@ -27,4 +28,10 @@ class Buildings {
 
     //accessors / getters
     int getNumOsmBuildings();
+
+    //prints all buildings in the osmBuildings vector
+    void print();
+
+    //find and print matching buildings
+    bool findAndPrint(string& name, Nodes& nodes);
 };

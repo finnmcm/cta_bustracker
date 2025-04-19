@@ -12,8 +12,10 @@
 
 #include <string>
 #include <vector>
-
+#include <iostream>
 #include "node.h"
+#include "nodes.h"
+
 
 using namespace std;
 
@@ -45,6 +47,13 @@ public:
   // adds the given nodeid to the end of the vector.
   //
   void add(long long nodeid);
+
+  //prints a building's information and corresponding nodes
+  void print(Nodes& nodes);
+
+// gets the center (lat, lon) of the building based
+// on the nodes that form the perimeter
+pair<double, double> getLocation(Nodes& nodes);
 
 };
 

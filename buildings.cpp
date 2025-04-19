@@ -44,3 +44,20 @@ Buildings::Buildings(XMLDocument& xmldoc)
 int Buildings::getNumOsmBuildings(){
     return this->osmBuildings.size();
 }
+void Buildings::print(){
+    for(Building b : this->osmBuildings){
+        cout << b.ID << ": " << b.Name << ", " << b.StreetAddress << endl;
+    }
+}
+bool Buildings::findAndPrint(string& name, Nodes& nodes){
+    bool found = false;
+    //iterate through all buildings on campus, stored in Buildings struct
+    for(Building &b : this->osmBuildings){
+        //if building is what we're looking for, get its data
+        if(b.Name.find(name) != string::npos){
+            found = true;
+            b.print(nodes);
+        }
+    }
+    return found;
+}

@@ -44,40 +44,14 @@ int main(){
             getline(cin, command);
             //list all buildings 
             if(command == "*"){
-                for(Building b : buildings.osmBuildings){
-                    cout << b.ID << ": " << b.Name << ", " << b.StreetAddress << endl;
-                }
+                buildings.print();
             }
             //exit program
             else if(command == "$"){
                 break;
             }
             else{
-                bool found = false;
-                //iterate through all buildings on campus, stored in Buildings struct
-                for(Building &b : buildings.osmBuildings){
-                    //if building is what we're looking for, get its data
-                    if(b.Name.find(command) != string::npos){
-                        found = true;
-                        cout << b.Name << endl;
-                        cout << "Address: " << b.StreetAddress << endl;
-                        cout << "Building ID: " << b.ID << endl;
-                        cout << "Nodes: " << endl;
-                        //iterate through all the node IDs of the building(s) and print them
-                        for(long long &id : b.NodeIDs){
-                            double lat;
-                            double lon;
-                            bool isEntrance;
-                             if(nodes.find(id, lat, lon, isEntrance)){
-                                cout << "  " << id << ": (" << lat << ", " << lon << ")"; 
-                             }
-                             if(isEntrance){
-                                cout << ", is entrance";
-                             }
-                             cout << endl;
-                        }
-                    }
-                }
+                bool found = buildings.findAndPrint(command, nodes);
                 //if building is not found, let the user know
                 if(!found){
                     cout << "No such building" << endl;
