@@ -52,3 +52,40 @@ void BusStops::print(){
         b.print();
     }
 }
+pair<BusStop, BusStop> BusStops::findClosestStops(Building& b, Nodes& nodes){
+    pair<double, double> buildingLocation = b.getLocation(nodes);
+    BusStop* closestNorthbound = nullptr;
+    BusStop* closestSouthbound = nullptr;
+    double northboundDist = 10000.0;
+    double southboundDist = 10000.0;
+    for(BusStop& b : this->busStops){
+        if(b.directionOfTravel == "Northbound"){
+            if(closestNorthbound == nullptr){
+                closestNorthbound = &b;
+                northboundDist = distBetween2Points(b.coordinates.first, b.coordinates.second, buildingLocation.first, buildingLocation.second);
+            }
+            else{
+                double dist = distBetween2Points(b.coordinates.first, b.coordinates.second, buildingLocation.first, buildingLocation.second);
+                if(dist < northboundDist){
+                    closestNorthbound = &b;
+                    northboundDist = dist;
+                }
+            }
+        }
+        else if(b.directionOfTravel == "Southbound"){
+            if(closestSouthbound == nullptr){
+                closestSouthbound = &b;
+                southboundDist = distBetween2Points(b.coordinates.first, b.coordinates.second, buildingLocation.first, buildingLocation.second);
+            }
+            else{
+                double dist = distBetween2Points(b.coordinates.first, b.coordinates.second, buildingLocation.first, buildingLocation.second);
+                if(dist < southboundDist){
+                    closestSouthbound = &b;
+                    southboundDist = dist;
+                }
+            }
+        }
+    }
+    return make_pair(*closestNorthbound, *closestSouthbound);
+    
+}

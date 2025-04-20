@@ -16,6 +16,10 @@
 #include <sstream>
 #include <fstream>
 #include <algorithm>
+#include <utility>
+#include "dist.h"
+#include "building.h"
+#include "nodes.h"
 using namespace std;
 //
 // BusStops
@@ -30,4 +34,5 @@ class BusStops {
     BusStops(string filename);
 
     void print();
+    pair<BusStop, BusStop> findClosestStops(Building& B, Nodes& nodes);
 };
