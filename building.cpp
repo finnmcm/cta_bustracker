@@ -37,6 +37,8 @@ void Building::print(Nodes& nodes){
   cout << "Building ID: " << this->ID << endl;
   cout << "# perimeter nodes: " << this->NodeIDs.size() << endl;
   cout << "Location: " <<"(" << P.first << ", " << P.second << ")" << endl; 
+
+
   //iterate through all the node IDs of the building(s) and print them
 /*  for(long long &id : this->NodeIDs){
       double lat;

@@ -5,13 +5,16 @@
 // Northwestern University
 // CS 21
 //
-// Original author: Prof. Joe Hummel
+// 
 //
 #pragma once
 #include <vector>
 #include "building.h"
 #include "tinyxml2.h"
+#include "busstops.h"
 #include <iostream>
+#include "busstop.h"
+#include "curl_util.h"
 using namespace std;
 using namespace tinyxml2;
 //
@@ -33,5 +36,5 @@ class Buildings {
     void print();
 
     //find and print matching buildings
-    bool findAndPrint(string& name, Nodes& nodes);
+    bool findAndPrint(string& name, Nodes& nodes, BusStops& busStops, CURL* curl);
 };

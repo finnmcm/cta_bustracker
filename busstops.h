@@ -18,9 +18,10 @@
 #include <algorithm>
 #include <utility>
 #include "dist.h"
-#include "building.h"
 #include "nodes.h"
+#include "json.hpp"
 using namespace std;
+using json = nlohmann::json;
 //
 // BusStops
 //
@@ -29,10 +30,15 @@ using namespace std;
 //
 class BusStops {
     public:
+    //internal vector of all busstops
     vector<BusStop> busStops;
     //CONSTRUCTOR:
     BusStops(string filename);
-
+    //print all bus stops
     void print();
-    pair<BusStop, BusStop> findClosestStops(Building& B, Nodes& nodes);
+    //find and print any available bus predictions
+    void printBusPredictions(string response);
+    //locate closest bus stops to the given location
+    pair<BusStop, BusStop> findClosestStops(pair<double, double> location, Nodes& nodes);
+
 };

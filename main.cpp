@@ -17,10 +17,20 @@ using namespace std;
 #include "nodes.h"
 #include "osm.h"
 #include "buildings.h"
+#include "curl_util.h"
 using namespace tinyxml2;
 
 int main(){
+    //Initialize CURL
+    CURL* curl = curl_easy_init();
+    if (curl == nullptr) {
+        cout << "**ERROR:" << endl;
+        cout << "**ERROR: unable to initialize curl library" << endl;
+        cout << "**ERROR:" << endl;
+        return 0;
+}
     XMLDocument xmldoc;
+    
 
     cout << "** NU open street map **" << endl;
     string filename;
@@ -57,18 +67,18 @@ int main(){
                 break;
             }
             else{
-                bool found = buildings.findAndPrint(command, nodes);
+                bool found = buildings.findAndPrint(command, nodes, busStops, curl);
                 //if building is not found, let the user know
                 if(!found){
                     cout << "No such building" << endl;
                 }
             }
         }
+        //clean up curl
+        curl_easy_cleanup(curl);
+        curl_global_cleanup();
         cout << endl;
         cout << "** Done **" << endl;
-      //  cout << "# of calls to getID(): " <<Node::getCallsToGetID()<< endl;
-      //  cout << "# of Nodes created: " <<Node::getCreated()<< endl;
-      //  cout << "# of Nodes copied: " <<Node::getCopied()<< endl;
         return 0;
     }
 }

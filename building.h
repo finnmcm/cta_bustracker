@@ -15,6 +15,9 @@
 #include <iostream>
 #include "node.h"
 #include "nodes.h"
+#include "busstop.h"
+#include "busstops.h"
+#include "dist.h"
 
 
 using namespace std;
