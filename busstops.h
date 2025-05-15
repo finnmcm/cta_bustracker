@@ -40,5 +40,7 @@ class BusStops {
     void printBusPredictions(string response);
     //locate closest bus stops to the given location
     pair<BusStop, BusStop> findClosestStops(pair<double, double> location, Nodes& nodes);
+    //return the number of busStops in internal vector
+    int getNumBusStops();
 
 };

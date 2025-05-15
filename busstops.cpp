@@ -106,7 +106,8 @@ void BusStops::printBusPredictions(string response){
         hasPrediction = true;
         //check for any exceptions while reading predictions
         try {
-            cout << "vehicle #" << stoi(M["vid"].get_ref<std::string&>()) << " on route " << stoi(M["rt"].get_ref<std::string&>()) << " travelling " << M["rtdir"].get_ref<std::string&>() << " to arrive in " << stoi(M["prdctdn"].get_ref<std::string&>()) << " mins" << endl;
+            int predTime = stoi(M["prdctdn"].get_ref<std::string&>());
+            cout << "  vehicle #" << stoi(M["vid"].get_ref<std::string&>()) << " on route " << stoi(M["rt"].get_ref<std::string&>()) << " travelling " << M["rtdir"].get_ref<std::string&>() << " to arrive in " << predTime << " mins" << endl;
         } catch (exception& e){
             cout << " error" << endl;
             cout << " malformed CTA response, prediction unavailable";
@@ -116,4 +117,7 @@ void BusStops::printBusPredictions(string response){
     if(!hasPrediction){
         cout << "  <<no predictions available>>" << endl;
     }
+}
+int BusStops::getNumBusStops(){
+    return this->busStops.size();
 }

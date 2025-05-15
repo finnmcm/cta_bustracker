@@ -48,6 +48,7 @@ int main(){
         BusStops busStops = BusStops("bus-stops.txt");
         cout << "# of nodes: " << nodes.getNumOsmNodes() << endl;
         cout << "# of buildings: " << buildings.getNumOsmBuildings() << endl;
+        cout << "# of bus stops: " << busStops.getNumBusStops() << endl;
         cout << endl;
 
         string command = "";
